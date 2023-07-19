@@ -1,0 +1,35 @@
+	BinNode<T>* attachAsLC(BinNode<T>* x, BinTree<T>* &t){
+		if (x->lchild = t._root)
+			x->lchild->parent = x;
+		_size += t->_size;
+		updateHeightAbove(x);
+		t->_root = nullptr;
+		t->_size = 0;
+		release(t);
+		t = nullptr;
+		return x;
+	}
+    
+	BinNode<T>* attachAsRC(BinNode<T>* x, BinTree<T>*& t){
+		if (x->rchild = t->_root)
+			x->rchild->parent = x;
+		_size += t->_size;
+		updateHeightAbove(x);
+		t->_root = nullptr;
+		t->_size = 0;
+		release(t);
+		t = nullptr;
+		return x;
+	}
+
+	BinTree<T>* secede(BinNode<T>* x){
+		FromParentTo(*x) = nullptr;
+		updateHeightAbove(x->parent);
+		BinTree<T>* S = new BinTree<T>;
+		S->_root = x;
+		x->parent = NULL;
+		S->setsize(x->size());
+		_size -= S->_size;
+		return S;
+	}
+	
