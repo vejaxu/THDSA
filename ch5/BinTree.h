@@ -7,19 +7,6 @@
 #define max(a, b) ( (a) > (b) ? (a) : (b))
 using namespace std;
 
-template <typename K, typename  V>
-struct Entry{
-	K key;
-	V value;
-	Entry( K k = K(), V v = K()) : key(k), value(v){}
-	Entry(Entry<K, V> const & e) : key(e.key) ,value(e.value) {}
-
-	bool operator< (Entry<K, V> const& e) { return key < e.key; }
-	bool operator> (Entry<K, V> const& e) { return key > e.key; }
-	bool operator != (Entry<K, V> const& e) { return key != e.key; }
-	bool operator == (Entry<K, V> const& e) { return key == e.key; }
-};
-
 
 template <typename T> 
 class BinTree{
