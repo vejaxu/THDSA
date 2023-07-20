@@ -1,16 +1,9 @@
 #include <iostream>
 #include "BinTree.h"
+#include "../Visit.h"
 
 
-class Visit{
-    public:
-        template<typename T>
-        void operator()(T value){
-            std::cout << value << "  ";
-        }
-};
-
-main(){
+int main(){
     BinTree<int> myTree = BinTree<int>();
     myTree.insertAsRoot(0);
     std::cout << myTree.size() << std::endl;
