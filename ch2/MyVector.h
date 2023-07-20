@@ -91,7 +91,9 @@ class Vector{
         void sort() {sort(0, _size);}
         //排序
         bool bubble(Rank lo, Rank hi);
+        Rank bubbleB(Rank lo, Rank hi);
         void bubbleSort(Rank lo, Rank hi); //起泡排序,稳定算法
+        void bubbleSortB(Rank lo, Rank hi);
         void merge(Rank lo, Rank mi, Rank hi);
         void mergeSort(Rank lo, Rank hi); //归并排序
         Rank max(Rank lo, Rank hi);
@@ -372,6 +374,22 @@ inline bool Vector<T>::bubble(Rank lo, Rank hi){
         }
     }
     return sorted;
+}
+//实际上，每一趟扫描，都会多余扫描后面已经排序的序列
+template <typename T>
+inline Rank Vector<T>::bubbleB(Rank lo, Rank hi){
+    Rank last = lo;
+    while(++lo < hi){
+        if(_elem[lo-1] > _elem[lo]){ //严格大于，因此stable
+            last = lo; //记录最后一次发生交换的位置，则last后面的元素无需扫描
+            swap(_elem[lo-1], _elem[lo]);
+        }
+    }
+    return last;
+}
+template <typename T>   
+void Vector<T>::bubbleSortB(Rank lo, Rank hi){
+    while(lo < (hi = bubbleB(lo, hi))); //每一趟扫描长度都递减
 }
 
 
