@@ -23,17 +23,15 @@ void convertIter(Stack<char>& S, __int64 n, int base){
 }
 
 main(){
-    using namespace std;
-    Stack<char> S2 = Stack<char>();
-    Stack<char> S16 = Stack<char>();
-    __int64 n = 16;
-    int base = 2;
-    int base16 = 16;
-    convertRecur(S2, n, base);
-    convertIter(S16, n, base16);
-    while(! S2.empty())
-        std::cout << S2.pop();
-    std::cout << std::endl;
-    while(! S16.empty())
-        std::cout << S16.pop();
+    int base;
+    std::cout << "input the base: ";
+    std::cin >> base; std::cout << std::endl;
+    __int64 n;
+    std::cout << "input the number: ";
+    std::cin >> n; std::cout << std::endl;
+    Stack<char> S = Stack<char>();
+    convertIter(S, n, base);
+    while(! S.empty()){
+        std::cout << S.pop();
+    }
 }
