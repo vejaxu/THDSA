@@ -262,6 +262,7 @@ template <typename T>
 void gotoLeftmostLeaf(Stack<BinNodePosi<T>>& S){
 	while(BinNodePosi<T> x = S.top()){
 		if (HasLChild(*x)){
+			//在有左孩子时，需要先观察是否有右孩子，因为父节点总是最后一个被访问的，所以如果有右孩子则需要将右孩子先入栈
 			if (HasRChild(*x)){
 				S.push(x->rchild);
 			}
@@ -279,7 +280,7 @@ void BinTree<T>::travPost_I(BinNodePosi<T> x, VST& visit){
 	Stack<BinNodePosi<T>> S;
 	if (x) S.push(x);
 	while(!S.empty()){
-		if (S.top() != x->parent){
+		if (S.top() != x->parent){ //出栈的有两种情况，要么是自己的父亲，要么是自己的右兄弟，如果是自己的有兄弟，则需要转交控制权
 			gotoLeftmostLeaf(S);
 		}
 		x = S.pop();
