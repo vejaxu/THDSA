@@ -32,7 +32,7 @@ static BinNodePosi<T> & searchIn(BinNodePosi<T> &v, const T& e, BinNodePosi<T> &
 
 template <typename T>
 BinNodePosi<T> BST<T>::insert(const T& e){
-    BinNodePosi<T> x = search(e);
+    BinNodePosi<T>& x = search(e);
     if(x) return x;
     x = new BinNode<T>(e, _hot);
     BinTree<T>::_size++;
@@ -43,7 +43,7 @@ BinNodePosi<T> BST<T>::insert(const T& e){
 
 template <typename T>
 bool BST<T>::remove(const T& e){
-    BinNodePosi<T> &x = search(e);
+    BinNodePosi<T>& x = search(e);
     if (!x){
         return false;
     }
