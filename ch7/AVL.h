@@ -13,10 +13,11 @@
 
 template <typename T>
 class AVL: public BST<T>{
-    BinNodePosi<T> insert(const T& e);
-    //插入节点发生失衡，则一定是较高的子树被插入了节点，则（几乎所有）祖先的高度会发生变化
-    bool remove(const T& e);
-    //删除如果发生失衡，则一定是较矮的子树节点被删除，则祖先的高度不会发生改变
+    public:
+        BinNodePosi<T> insert(const T& e);
+        //插入节点发生失衡，则一定是较高的子树被插入了节点，则（几乎所有）祖先的高度会发生变化
+        bool remove(const T& e);
+        //删除如果发生失衡，则一定是较矮的子树节点被删除，则祖先的高度不会发生改变
 };
 
 
@@ -31,20 +32,20 @@ BinNodePosi<T> BST<T>::connect34(
     a->rchild = T1;
     if(T1){
         T1->parent = a;
-        updateHeight(a);
+        BinTree<T>::updateHeight(a);
     }
     c->lchild = T2;
     if(T2){T2->parent = c;}
     c->rchild = T3;
     if(T3){
         T3->parent = c;
-        updateHeight(c);
+        BinTree<T>::updateHeight(c);
     }
     b->lchild = a;
     a->parent = b;
     b->rchild = c;
     c->parent = b;
-    updateHeight(b);
+    BinTree<T>::updateHeight(b);
     return b;
 }
 
@@ -65,7 +66,7 @@ BinNodePosi<T> BST<T>::rotateAt(BinNodePosi<T> v){
             return connect34(p, v, g, p->lchild, v->lchild, v->rchild, g->rchild);
         }
     }
-    if(IsRChild(*p)){
+    else{
         if(IsRChild(*v)){
             p->parent = g->parent;
             return connect34(g, p, v, g->lchild, p->lchild, v->lchild, v->rchild);
@@ -82,14 +83,14 @@ template <typename T>
 BinNodePosi<T> AVL<T>::insert(const T& e){
     BinNodePosi<T>& x = BST<T>::search(e);
     if(x) return x;
-    x = new Binnode<T>(e, _hot);
-    _size ++;
-    for(BinNodePosi<T> g = _hot; g; g->parent){
+    BinNodePosi<T> xx = x = new BinNode<T>(e, BST<T>::_hot);
+    BinTree<T>::_size ++;
+    for(BinNodePosi<T> g = BST<T>::_hot; g; g->parent){
         if(!AvlBalanced(*g)){ //一旦失衡，必然是失衡祖先中的最低者
-            FromParentTo(*g) = rotateAt(tallerChild(tallerChild(g))); //祖父节点g，g更高的孩子p，p更高的孩子v
+            FromParentTo(*g) = BST<T>::rotateAt(tallerChild(tallerChild(g))); //祖父节点g，g更高的孩子p，p更高的孩子v
             break; //插入失衡修复后，只要最矮的祖先重平衡，则整棵树重平衡，则直接退出
         }else{
-            updateHeight(g);
+            BinTree<T>::updateHeight(g);
         }
     }
     return x;
@@ -98,15 +99,15 @@ BinNodePosi<T> AVL<T>::insert(const T& e){
 
 template <typename T>
 bool AVL<T>::remove(const T& e){
-    BinNodePosi<T>& x = search(e);
+    BinNodePosi<T>& x = BST<T>::search(e);
     if(!x) return false;
-    removeAt(x, _hot);
-    _size --;
-    for(BinNodePosi<T> g = _hot; g; g = g->parent){
+    removeAt(x, BST<T>::_hot);
+    BinTree<T>::_size --;
+    for(BinNodePosi<T> g = BST<T>::_hot; g; g = g->parent){
         if(!AvlBalanced(*g)){
-            g = FromParentTo(*g) = rotateAt(tallerChild(tallerChild(g)));
+            g = FromParentTo(*g) = BST<T>::rotateAt(tallerChild(tallerChild(g)));
         }
-        updateHeight(g);
+       BinTree<T>::updateHeight(g);
     }
     return true;
 }
