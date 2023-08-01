@@ -18,7 +18,7 @@
         {
             "name": "C++",
             "includePath": [
-                "${workspaceFolder}/**"
+                "d:\\Code\\cppProject\\THDSA/**"
             ],
             "defines": [
                 "_DEBUG",
@@ -28,7 +28,15 @@
             "compilerPath": "D:/Code/mingw64/bin/g++.exe",
             "cStandard": "c17",
             "cppStandard": "gnu++14",
-            "intelliSenseMode": "windows-gcc-x64"
+            "intelliSenseMode": "windows-gcc-x64",
+            "compilerPathInCppPropertiesJson": "D:/Code/mingw64/bin/g++.exe",
+            "mergeConfigurations": false,
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/**"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
         }
     ],
     "version": 4
