@@ -1,4 +1,5 @@
 #pragma once
+#include "Graph.h"
 #include "../ch4/MyQueue.h"
 template <typename Tv, typename Te>
 void Graph<Tv, Te>::bfs(int s){
