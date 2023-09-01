@@ -10,7 +10,8 @@ int* buildNext(char* P){
         if(0 > t || P[j] == P[t]){
             j ++;
             t ++;
-            N[j] = t;
+            //N[j] = t;
+            N[j] = (P[j] != P[t] ? t: N[t]);
         }else{
             t = N[t];
         }
@@ -38,13 +39,20 @@ int match(char* P, char* T){
 
 
 int main(){
-    char T[] = {'a', 'a', 'd', 'a', 'a', 'b', 'a', 'a', 'f'};
+/*     char T[] = {'a', 'a', 'd', 'a', 'a', 'b', 'a', 'a', 'f'};
     char P[] = {'a', 'a', 'b', 'a', 'a', 'f'};
 
     int result = match(P, T);
 
-    std::cout << result << std::endl;
+    std::cout << result << std::endl; */
 
-    return result;
+    char X[] = {'0', '0', '0', '1', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0'};
+    char Y[] = {'0', '0', '0', '0', '0'};
+
+    int result1 = match(Y, X);
+
+    std::cout << result1 << std::endl;
+
+    return 0;
 
 }
