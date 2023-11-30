@@ -20,6 +20,7 @@ int* buildNext(char* P){
 }
 int match(char* P, char* T){
     int* next = buildNext(P);
+
     int n = (int) strlen(T), i = 0;
     int m = (int) strlen(P), j = 0;
 
