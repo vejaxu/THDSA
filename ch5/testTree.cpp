@@ -39,7 +39,7 @@ int main(){
     std::cout << std::endl;
     BinNodePosi<int> m, n;
     m = myTree.root()->lchild;
-    std::cout << m->data << m->success()->data << std::endl;
+    std::cout << m->data << ' ' <<  m->success()->data << std::endl;
     n = myTree.root()->rchild;
-    std::cout << n->data << n->pred()->data << std::endl;
+    std::cout << n->data << ' ' <<  n->pred()->data << std::endl;
 }
