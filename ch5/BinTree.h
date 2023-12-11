@@ -112,6 +112,8 @@ public:
 	bool operator==(BinTree<T> const& t){
 		return _root && t._root && _root == t._root;
 	}
+
+	T preNode(BinNodePosi<T> x); //寻找x结点的前驱
 };
 
 
@@ -302,4 +304,26 @@ void BinTree<T>::travLevel(BinNodePosi<T> x ,VST& visit){
 		if(HasRChild(*x))
 			Q.enqueue(x->rchild);
 	}
+}
+
+
+template <typename T>
+T BinTree<T>::preNode(BinNodePosi<T> x){
+	if(x == nullptr){
+		return 0;
+	}
+	T re;
+	BinNodePosi<T> temp;
+	if(x->lchild != nullptr){
+		x = x->left;
+		while(x->rchild != nullptr){
+			x = x->rchild;
+		}
+		return x->data;
+	}
+
+	while(x->parent != nullptr && x != x->parent->rchild){
+		x = x->parent;
+	}
+	return x->parent->data;
 }
