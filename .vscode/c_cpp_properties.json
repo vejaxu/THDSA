@@ -10,7 +10,7 @@
                 "UNICODE",
                 "_UNICODE"
             ],
-            "compilerPath": "D:\\Code\\mingw64\\bin\\gcc.exe",
+            "compilerPath": "D:\\Application\\mingw64\\bin\\gcc.exe",
             "cStandard": "c17",
             "cppStandard": "gnu++14",
             "intelliSenseMode": "windows-gcc-x64"
@@ -18,25 +18,17 @@
         {
             "name": "C++",
             "includePath": [
-                "d:\\Code\\cppProject\\THDSA/**"
+                "${workspaceFolder}/**"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE"
             ],
-            "compilerPath": "D:/Code/mingw64/bin/g++.exe",
+            "compilerPath": "D:/Application/mingw64/bin/g++.exe",
             "cStandard": "c17",
             "cppStandard": "gnu++14",
-            "intelliSenseMode": "windows-gcc-x64",
-            "compilerPathInCppPropertiesJson": "D:/Code/mingw64/bin/g++.exe",
-            "mergeConfigurations": false,
-            "browse": {
-                "path": [
-                    "${workspaceFolder}/**"
-                ],
-                "limitSymbolsToIncludedHeaders": true
-            }
+            "intelliSenseMode": "windows-gcc-x64"
         }
     ],
     "version": 4
